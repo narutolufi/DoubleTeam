@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="server_value">
+        <item>210.72.145.44</item>
+        <item>pool.ntp.org</item>
+        <item>0.pool.ntp.org</item>
+        <item>1.pool.ntp.org</item>
+        <item>2.pool.ntp.org</item>
+        <item>3.pool.ntp.org</item>
+        <item>0.US.pool.ntp.org</item>
+        <item>1.US.pool.ntp.org</item>
+        <item>2.US.pool.ntp.org</item>
+        <item>3.US.pool.ntp.org</item>
+        <item>asia.pool.ntp.org</item>
+        <item>europe.pool.ntp.org</item>
+        <item>north-america.pool.ntp.org</item>
+        <item>oceania.pool.ntp.org</item>
+        <item>south-america.pool.ntp.org</item>
+        <item>time.apple.com</item>
+        <item>其他服务器</item>
+    </string-array>
+    <string-array name="overtime_value">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+    </string-array>
+    <string-array name="themes_value">
+        <item>黑色</item>
+        <item>白色</item>
+        <item>棕色</item>
+    </string-array>
+    <string-array name="time_depart">
+        <item>120秒</item>
+        <item>15分钟</item>
+        <item>30分钟</item>
+        <item>1小时</item>
+        <item>3小时</item>
+        <item>6小时</item>
+        <item>12小时</item>
+        <item>1日</item>
+        <item>3日</item>
+        <item>1周</item>
+    </string-array>
+
+</resources>
