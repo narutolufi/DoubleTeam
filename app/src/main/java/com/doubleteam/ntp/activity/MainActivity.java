@@ -51,10 +51,10 @@ public class MainActivity extends MyActivity implements OnClickListener {
 	private boolean isOtherServer;
 	private boolean isProcessing;
 	private SharedPreferences preferenceSetting;
-	
+
 
 	private MsgReceiver msgReceiver;
-	
+
 	@Override
 	protected void setMyView() {
 		// TODO Auto-generated method stub
@@ -72,7 +72,7 @@ public class MainActivity extends MyActivity implements OnClickListener {
 		// TODO Auto-generated method stub
 		tvOffset = (TextView) findViewById(R.id.tv_offset);
 		tvOffset.setOnClickListener(this);
-		tvOffset.setText("µÈ´ı»ñÈ¡±ê×¼Ê±¼ä");
+		tvOffset.setText("ç­‰å¾…è·å–æ ‡å‡†æ—¶é—´");
 		tvSystemClock = (TextView) findViewById(R.id.tv_system);
 		tvSystemClock.setOnClickListener(this);
 		tvAtomicClock = (TextView) findViewById(R.id.tv_atomic);
@@ -118,15 +118,15 @@ public class MainActivity extends MyActivity implements OnClickListener {
 		TextView lastview = (TextView) findViewById(R.id.tv_lasttime);
 		lastview.setText(lasttestime);
 
-		
-		
-		
+
+
+
 
 		localTimer = new LocalTimer();
 		localTimer.addTextView(tvSystemClock);
 		localTimer.execute();
 
-		// ¿ªÆô±¾µØ¸üĞÂ
+		// å¼€å¯æœ¬åœ°æ›´æ–°
 		initHandler(new HandlerListener() {
 
 			@Override
@@ -134,16 +134,16 @@ public class MainActivity extends MyActivity implements OnClickListener {
 				// TODO Auto-generated method stub
 				isProcessing = false;
 				switch (msg.arg1) {
-				case FAIL_TIME:
-					tvAtomicClock.setText("»ñÈ¡Ê§°Ü");
-					break;
-				case SUCCESS_TIME:
-					updateOffset();
+					case FAIL_TIME:
+						tvAtomicClock.setText("è·å–å¤±è´¥");
+						break;
+					case SUCCESS_TIME:
+						updateOffset();
 					/*
 					 * if (preferenceSetting.getBoolean("auto_sync", false) ==
 					 * true) { syncTime(); }
 					 */
-					break;
+						break;
 				}
 			}
 		});
@@ -160,20 +160,20 @@ public class MainActivity extends MyActivity implements OnClickListener {
 			((TextView) findViewById(R.id.tile)).setTextColor(orange);
 		}
 		llBackground.setBackgroundColor(color);
-		
-		
-		
-		
+
+
+
+
 		Intent intent = new Intent("com.doubleteam.service.MSG_ACTION");
 		startService(intent);
-		
+
 		msgReceiver = new MsgReceiver();
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction("com.doubleteam.service.RECEIVER");
 		registerReceiver(msgReceiver, intentFilter);
 	}
 
-	
+
 	public void updateAtomicTime() {
 		new Thread(new Runnable() {
 			@Override
@@ -183,7 +183,7 @@ public class MainActivity extends MyActivity implements OnClickListener {
 				String server = preferenceSetting.getString("server",
 						"pool.ntp.org");
 				int overtime = (int) (preferenceSetting.getLong("overtime", 30) * 1000);
-				if (server.equals("ÆäËû·şÎñÆ÷")) {
+				if (server.equals("å…¶ä»–æœåŠ¡å™¨")) {
 					isOtherServer = true;
 					server = preferenceSetting.getString("other_server",
 							"pool.ntp.org");
@@ -197,7 +197,7 @@ public class MainActivity extends MyActivity implements OnClickListener {
 							"yyyy-MM-dd HH:mm:ss");
 					System.out.println(format.format(current));
 					// date = current;
-					// ¿ªÆôÔ¶³Ì¸üĞÂ
+					// å¼€å¯è¿œç¨‹æ›´æ–°
 					// localTimer = new LocalTimer();
 					localTimer.setDate(current);
 					if (localTimer.getTextViewCount() != 2) {
@@ -225,7 +225,7 @@ public class MainActivity extends MyActivity implements OnClickListener {
 		}
 	}
 
-	// ×Ô¶¯Í¬²½Ê±¼ä
+	// è‡ªåŠ¨åŒæ­¥æ—¶é—´
 	public void timeSynchronization() {
 		Date date = null;
 		Process process = null;
@@ -233,7 +233,7 @@ public class MainActivity extends MyActivity implements OnClickListener {
 		try {
 			process = Runtime.getRuntime().exec("su");
 			os = new DataOutputStream(process.getOutputStream());
-			
+
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.HHmmss");
 			date = localTimer.getDate();
 			String datetime = sdf.format(date);
@@ -252,7 +252,7 @@ public class MainActivity extends MyActivity implements OnClickListener {
 			} catch (Exception e) {
 			}
 		}
-		
+
 		updateLastTime(getTime(date));
 
 	}
@@ -282,28 +282,28 @@ public class MainActivity extends MyActivity implements OnClickListener {
 				//localTimer.setComit(true);
 				updateOffset();
 			} else {
-				Toast.makeText(this, "Ê±¼äÍ¬²½Ã»ÓĞÈ¨ÏŞÉèÖÃÊ±¼ä", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "æ—¶é—´åŒæ­¥æ²¡æœ‰æƒé™è®¾ç½®æ—¶é—´", Toast.LENGTH_SHORT).show();
 			}
 		} else {
-			Toast.makeText(this, "±ê×¼Ê±¼äÉĞÎ´»ñÈ¡³É¹¦", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "æ ‡å‡†æ—¶é—´å°šæœªè·å–æˆåŠŸ", Toast.LENGTH_SHORT).show();
 		}
 
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.action_update:
-			localTimer.setComit(false);
-			tvAtomicClock.setText("ÕıÔÚ»ñÈ¡");
-			updateAtomicTime();
-			break;
-		case R.id.action_sync:
-			syncTime();
-			break;// ×Ô¶¯Í¬²½
+			case R.id.action_update:
+				localTimer.setComit(false);
+				tvAtomicClock.setText("æ­£åœ¨è·å–");
+				updateAtomicTime();
+				break;
+			case R.id.action_sync:
+				syncTime();
+				break;// è‡ªåŠ¨åŒæ­¥
 
-		case R.id.action_settings:
-			activityJump(SettingActivity.class);
-			break;// ÉèÖÃ
+			case R.id.action_settings:
+				activityJump(SettingActivity.class);
+				break;// è®¾ç½®
 		}
 		return false;
 
@@ -320,43 +320,43 @@ public class MainActivity extends MyActivity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.tv_atomic:
-			if (isOtherServer) {
-				new NtpDialog(this, preferenceSetting.getString("other_server",
-						"pool.ntp.org"), 30000).show();
-			} else {
-				new NtpDialog(this, preferenceSetting.getString("server",
-						"pool.ntp.org"), 30000).show();
-			}
+			case R.id.tv_atomic:
+				if (isOtherServer) {
+					new NtpDialog(this, preferenceSetting.getString("other_server",
+							"pool.ntp.org"), 30000).show();
+				} else {
+					new NtpDialog(this, preferenceSetting.getString("server",
+							"pool.ntp.org"), 30000).show();
+				}
 
-			break;
-		case R.id.tv_system:
-		case R.id.tv_offset:
-			if (!isProcessing) {
-				isProcessing = true;
-				localTimer.setComit(false);
-				tvAtomicClock.setText("ÕıÔÚ»ñÈ¡");
-				updateAtomicTime();
-			} else {
-				System.out.println("3");
-				Toast.makeText(this, "ÕıÔÚ»ñÈ¡", Toast.LENGTH_SHORT).show();
-			}
-			break;
-		case R.id.tile:
-		case R.id.ac_clock:
-			activityJump(SettingActivity.class);
-			break;
-		case R.id.tv_lasttime:
-			syncTime();
-			break;
+				break;
+			case R.id.tv_system:
+			case R.id.tv_offset:
+				if (!isProcessing) {
+					isProcessing = true;
+					localTimer.setComit(false);
+					tvAtomicClock.setText("æ­£åœ¨è·å–");
+					updateAtomicTime();
+				} else {
+					System.out.println("3");
+					Toast.makeText(this, "æ­£åœ¨è·å–", Toast.LENGTH_SHORT).show();
+				}
+				break;
+			case R.id.tile:
+			case R.id.ac_clock:
+				activityJump(SettingActivity.class);
+				break;
+			case R.id.tv_lasttime:
+				syncTime();
+				break;
 		}
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		unregisterReceiver(msgReceiver);
-		
+
 		super.onDestroy();
 	}
 
@@ -371,8 +371,8 @@ public class MainActivity extends MyActivity implements OnClickListener {
 				updateOffset();
 				updateLastTime(getTime(new Date(date)));
 			}
-			
+
 		}
-		
+
 	}
 }

@@ -23,7 +23,7 @@ public class NtpDialog extends Dialog {
 	private Context context;
 	private final static int UPDATEDONE = 1;
 	private final static int UPDATEERRO = 0;
-	
+
 	private Button btnUpdate;
 	private Handler handler = new Handler() {
 
@@ -32,14 +32,14 @@ public class NtpDialog extends Dialog {
 			// TODO Auto-generated method stub
 			super.handleMessage(msg);
 			switch (msg.what) {
-			case UPDATEDONE:
-				refresh();
-				break;
-			case UPDATEERRO:
-				Toast.makeText(context, "∏¸–¬ ß∞‹£°", Toast.LENGTH_SHORT).show();
-				break;
-			default:
-				break;
+				case UPDATEDONE:
+					refresh();
+					break;
+				case UPDATEERRO:
+					Toast.makeText(context, "Êõ¥Êñ∞Â§±Ë¥•ÔºÅ", Toast.LENGTH_SHORT).show();
+					break;
+				default:
+					break;
 			}
 		}
 
@@ -101,7 +101,7 @@ public class NtpDialog extends Dialog {
 		//TimeZone.getDefault().getID();
 		setText(R.id.time_zone, TimeZone.getDefault().getID());
 		onclicklisenler name = new onclicklisenler();
-		
+
 		btnUpdate = (Button) findViewById(R.id.update);
 		btnUpdate.setOnClickListener(name);
 		btnUpdate.setEnabled(false);
@@ -114,25 +114,25 @@ public class NtpDialog extends Dialog {
 		update();
 		super.show();
 	}
-class onclicklisenler implements View.OnClickListener
-{
+	class onclicklisenler implements View.OnClickListener
+	{
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.update:
-			update();
-			break;
-		case R.id.close:
-			dismiss();
-			break;
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			switch (v.getId()) {
+				case R.id.update:
+					update();
+					break;
+				case R.id.close:
+					dismiss();
+					break;
+			}
 		}
+
+
+
+
 	}
 
-	
-
-	
-}
-	
 }

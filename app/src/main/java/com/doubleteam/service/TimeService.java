@@ -21,14 +21,14 @@ public class TimeService extends Service {
 	private SntpClient client;
 	private SharedPreferences preferences;
 	private boolean isRunning;
-	
+
 	private Intent intent = new Intent("com.doubleteam.service.RECEIVER");
-	
+
 	public TimeService() {
 		super();
 		isRunning = true;
 		client = new SntpClient();
-		
+
 	}
 
 	public void setRunning(boolean isRunning) {
@@ -42,9 +42,9 @@ public class TimeService extends Service {
 				startsyc();
 			}
 		}
-		
+
 	}
-	
+
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
@@ -67,22 +67,22 @@ public class TimeService extends Service {
 		String time = preferences.getString("timedepart", "30");
 		final long depattime;
 		String me = getString(time);
-		if (time.equals("120Ãë")) {
+		if (time.equals("120ç§’")) {
 			depattime = Long.valueOf(me) * 1000;
-		} else if (time.equals("15·ÖÖÓ") || time.equals("30·ÖÖÓ")) {
+		} else if (time.equals("15åˆ†é’Ÿ") || time.equals("30åˆ†é’Ÿ")) {
 			depattime = Long.valueOf(me) * 1000 * 60;
-		} else if (time.equals("1Ğ¡Ê±") || time.equals("3Ğ¡Ê±")
-				|| time.equals("6Ğ¡Ê±") || time.equals("12Ğ¡Ê±")) {
+		} else if (time.equals("1å°æ—¶") || time.equals("3å°æ—¶")
+				|| time.equals("6å°æ—¶") || time.equals("12å°æ—¶")) {
 			depattime = Long.valueOf(me) * 1000 * 60 * 60;
-		} else if (time.equals("1ÈÕ") || time.equals("3ÈÕ")) {
+		} else if (time.equals("1æ—¥") || time.equals("3æ—¥")) {
 			depattime = Long.valueOf(me) * 1000 * 60 * 60 * 12;
-		} else if (time.equals("1ÖÜ")) {
+		} else if (time.equals("1å‘¨")) {
 			depattime = Long.valueOf(me) * 1000 * 60 * 60 * 12;
 		} else {
 			depattime = 0;
 		}
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -93,10 +93,10 @@ public class TimeService extends Service {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					//System.out.println("Ê±¼äÍ¬²½");
+					//System.out.println("æ—¶é—´åŒæ­¥");
 					String server = preferences.getString("server", "pool.ntp.org");
 					int overtime = (int) (preferences.getLong("overtime", 30) * 1000);
-					if (server.equals("ÆäËû·şÎñÆ÷")) {
+					if (server.equals("å…¶ä»–æœåŠ¡å™¨")) {
 						server = preferences.getString("other_server",
 								"pool.ntp.org");
 					}
@@ -106,7 +106,7 @@ public class TimeService extends Service {
 								- client.getNtpTimeReference();
 						Date current = new Date(now);
 						//SystemClock.setCurrentTimeMillis(current.getTime());
-						//System.out.println("Ê±¼ä»ñÈ¡³É¹¦");
+						//System.out.println("æ—¶é—´è·å–æˆåŠŸ");
 						Process process = null;
 						DataOutputStream os = null;
 
@@ -122,7 +122,7 @@ public class TimeService extends Service {
 							os.writeBytes("exit\n");
 							os.flush();
 							process.waitFor();
-							//System.out.println("²Ù×÷Íê³É");
+							//System.out.println("æ“ä½œå®Œæˆ");
 							intent.putExtra("date", now);
 							sendBroadcast(intent);
 						} catch (Exception e) {
@@ -139,7 +139,7 @@ public class TimeService extends Service {
 
 					}
 				}
-				}
+			}
 		}).start();
 	}
 
@@ -150,7 +150,7 @@ public class TimeService extends Service {
 		System.out.println("onCreate");
 		startAutoSync();
 	}
-	
+
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
@@ -162,7 +162,7 @@ public class TimeService extends Service {
 //		} else {
 //			isRunning = false;
 //		}
-		
+
 		boolean run = preferences.getBoolean("auto_sync", false);
 		if (this.isRunning == true) {
 			if (run == false) {
@@ -194,8 +194,8 @@ public class TimeService extends Service {
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
-		//System.out.println("·şÎñ¹Ø±Õ");
+		//System.out.println("æœåŠ¡å…³é—­");
 		super.onDestroy();
 	}
-	
+
 }

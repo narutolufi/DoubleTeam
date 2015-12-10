@@ -36,7 +36,7 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 	private Preference reset;
 	private SharedPreferences preferences;
 
-	private String[] color = { "ºÚÉ«", "°×É«", "×ØÉ«" };
+	private String[] color = { "é»‘è‰²", "ç™½è‰²", "æ£•è‰²" };
 	private int[] colorValue = { -16777216, -1, -6401529 };
 
 	@Override
@@ -73,9 +73,9 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 		boolean isauto = preferences.getBoolean("auto_sync", false);
 		findPreference(getResources().getString(R.string.time_depart)).setEnabled(isauto);
 
-		String defaultTimeDepart = preferences.getString("timedepart", "120Ãë");
+		String defaultTimeDepart = preferences.getString("timedepart", "120ç§’");
 		lpTimedepart.setValue(defaultTimeDepart);
-		if (preferences.getString("server", "pool.ntp.org").equals("ÆäËû·şÎñÆ÷")) {
+		if (preferences.getString("server", "pool.ntp.org").equals("å…¶ä»–æœåŠ¡å™¨")) {
 			etpOtherServer.setEnabled(true);
 			etpOtherServer.setSummary(preferences.getString("other_server", "pool.ntp.org"));
 		}
@@ -110,7 +110,7 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 		if (preference.getKey().equals(serverSetting)) {
 			Log.v("change", "server");
 			lpServer.setValue(newValue.toString());
-			if (newValue.toString().equals("ÆäËû·şÎñÆ÷")) {
+			if (newValue.toString().equals("å…¶ä»–æœåŠ¡å™¨")) {
 				etpOtherServer.setEnabled(true);
 			} else {
 				etpOtherServer.setEnabled(false);
@@ -163,8 +163,8 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 			editor.putInt("theme", colorValue[0]);
 			editor.putBoolean("gps_mode", false);
 		} else if (preference.getKey().equals(getResources().getString(R.string.about))) {
-			new AlertDialog.Builder(SettingActivity.this).setTitle("¹ØÓÚ")
-					.setMessage(getResources().getString(R.string.about_info)).setPositiveButton("È·¶¨", null).show();
+			new AlertDialog.Builder(SettingActivity.this).setTitle("å…³äº")
+					.setMessage(getResources().getString(R.string.about_info)).setPositiveButton("ç¡®å®š", null).show();
 		} else {
 			return false;
 		}

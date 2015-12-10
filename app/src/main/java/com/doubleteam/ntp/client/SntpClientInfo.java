@@ -8,22 +8,22 @@ import org.apache.commons.net.ntp.TimeInfo;
 
 public class SntpClientInfo {
 	private NTPUDPClient ntpudpClient;
-	private long time;//µ±Ç°Ê±¼ä
-	private String delay;//ÑÓÊ±
-	private String offset;//Æ«²î
-	private String mode;//Ä£Ê½
-	private String originatetime;//ÇëÇóÊ±¼ä
-	private String recievetime;//µ½´ïÊ±¼ä
-	private String transmittime;//ÏìÓ¦Ê±¼ä
-	private String referencetime;//·µ»ØÊ±¼ä
-	private String stratum;//Ğ­ÒéÀàĞÍ
-	private int leap;//Í¬²½×´Ì¬
-	private int version;//°æ±¾ºÅ
-	private int precision;//¾«È·¶È
-	private int poll;//ÂÖ»»Ê±¼ä
-	private float rootdelay;//×ÜÑÓÊ±
-	private float rootdisperion;//×î´óÎó²î
-	private String ip;//ipµØÖ·
+	private long time;//å½“å‰æ—¶é—´
+	private String delay;//å»¶æ—¶
+	private String offset;//åå·®
+	private String mode;//æ¨¡å¼
+	private String originatetime;//è¯·æ±‚æ—¶é—´
+	private String recievetime;//åˆ°è¾¾æ—¶é—´
+	private String transmittime;//å“åº”æ—¶é—´
+	private String referencetime;//è¿”å›æ—¶é—´
+	private String stratum;//åè®®ç±»å‹
+	private int leap;//åŒæ­¥çŠ¶æ€
+	private int version;//ç‰ˆæœ¬å·
+	private int precision;//ç²¾ç¡®åº¦
+	private int poll;//è½®æ¢æ—¶é—´
+	private float rootdelay;//æ€»å»¶æ—¶
+	private float rootdisperion;//æœ€å¤§è¯¯å·®
+	private String ip;//ipåœ°å€
 
 	public long getTime() {
 		return time;
@@ -102,28 +102,28 @@ public class SntpClientInfo {
 			ntpudpClient.setSoTimeout(timeout);
 			TimeInfo info = ntpudpClient.getTime(host);
 			delay = (System.currentTimeMillis() - requsttime) + "ms";
-			
-			time = info.getMessage().getTransmitTimeStamp().getDate().getTime();  
-		        
-		//	time = info.getReturnTime();//·µ»ØÊ±¼ä
-			//	delay = info.getDelay();//ÑÓÊ±Ê±¼ä
-			offset = (time - info.getReturnTime()) + "ms";//Ê±²î
-			//	offset = info.getOffset();//Ê±²î
+
+			time = info.getMessage().getTransmitTimeStamp().getDate().getTime();
+
+			//	time = info.getReturnTime();//è¿”å›æ—¶é—´
+			//	delay = info.getDelay();//å»¶æ—¶æ—¶é—´
+			offset = (time - info.getReturnTime()) + "ms";//æ—¶å·®
+			//	offset = info.getOffset();//æ—¶å·®
 			NtpV3Packet ntpV3Packet = info.getMessage();
-			mode = ntpV3Packet.getModeName();//Ä£Ê½
-			originatetime = ntpV3Packet.getOriginateTimeStamp().toDateString().substring(16);//ÇëÇóÊ±¼ä
-			recievetime = ntpV3Packet.getReceiveTimeStamp().toDateString().substring(16);//µ½´ïÊ±¼ä
-			transmittime = ntpV3Packet.getTransmitTimeStamp().toDateString().substring(16);//ÏìÓ¦Ê±¿Ì
-			referencetime = ntpV3Packet.getReferenceTimeStamp().toDateString().substring(16);//·µ»ØÊ±¿Ì
-			stratum = ntpV3Packet.getStratum() + ntpV3Packet.getType();//Ğ­ÒéÀàĞÍ
-			leap = ntpV3Packet.getLeapIndicator();//Í¬²½×´Ì¬
-			version = ntpV3Packet.getVersion();//b°æ±¾ºÅ
-			mode = ntpV3Packet.getModeName() + "(" + ntpV3Packet.getMode() + ")";//Ä£Ê½
-			precision = ntpV3Packet.getPrecision();//¾«È·¶È
-			poll = ntpV3Packet.getPoll();//ÂÖ»»Ê±¼ä
-			rootdelay = ntpV3Packet.getRootDelay() / 1000.0f;//×ÜÑÓÊ±
-			rootdisperion = ntpV3Packet.getRootDispersion() / 1000.0f;//×î´óÎó²î
-			ip = ntpV3Packet.getReferenceIdString();////ipµØÖ·
+			mode = ntpV3Packet.getModeName();//æ¨¡å¼
+			originatetime = ntpV3Packet.getOriginateTimeStamp().toDateString().substring(16);//è¯·æ±‚æ—¶é—´
+			recievetime = ntpV3Packet.getReceiveTimeStamp().toDateString().substring(16);//åˆ°è¾¾æ—¶é—´
+			transmittime = ntpV3Packet.getTransmitTimeStamp().toDateString().substring(16);//å“åº”æ—¶åˆ»
+			referencetime = ntpV3Packet.getReferenceTimeStamp().toDateString().substring(16);//è¿”å›æ—¶åˆ»
+			stratum = ntpV3Packet.getStratum() + ntpV3Packet.getType();//åè®®ç±»å‹
+			leap = ntpV3Packet.getLeapIndicator();//åŒæ­¥çŠ¶æ€
+			version = ntpV3Packet.getVersion();//bç‰ˆæœ¬å·
+			mode = ntpV3Packet.getModeName() + "(" + ntpV3Packet.getMode() + ")";//æ¨¡å¼
+			precision = ntpV3Packet.getPrecision();//ç²¾ç¡®åº¦
+			poll = ntpV3Packet.getPoll();//è½®æ¢æ—¶é—´
+			rootdelay = ntpV3Packet.getRootDelay() / 1000.0f;//æ€»å»¶æ—¶
+			rootdisperion = ntpV3Packet.getRootDispersion() / 1000.0f;//æœ€å¤§è¯¯å·®
+			ip = ntpV3Packet.getReferenceIdString();////ipåœ°å€
 			System.out.println(ntpV3Packet.getReferenceIdString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

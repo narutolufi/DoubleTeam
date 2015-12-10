@@ -20,7 +20,7 @@ public class LogoActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE); // 取消标题
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE); // 鍙栨秷鏍囬
 		setContentView(R.layout.activity_logo);
 		startHandler = new Handler() {
 			@Override
@@ -28,15 +28,15 @@ public class LogoActivity extends Activity {
 				// TODO Auto-generated method stub
 				super.handleMessage(msg);
 				switch (msg.what) {
-				case 0x01:
-					Intent intent = new Intent(LogoActivity.this,
-							MainActivity.class);
-					startActivity(intent);
-					overridePendingTransition(
-							R.anim.activity_move_in_from_right,
-							R.anim.activity_move_out_to_left);
-					finish();
-					break;
+					case 0x01:
+						Intent intent = new Intent(LogoActivity.this,
+								MainActivity.class);
+						startActivity(intent);
+						overridePendingTransition(
+								R.anim.activity_move_in_from_right,
+								R.anim.activity_move_out_to_left);
+						finish();
+						break;
 				}
 			}
 		};

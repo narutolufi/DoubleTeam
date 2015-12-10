@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class LocalTimer extends AsyncTask<Object, Object, Boolean> {
 
 	private Timer timer = null;
-	private final static int Delay = 1000;//ÑÓ³ÙÒ»Ãë
+	private final static int Delay = 1000;//å»¶è¿Ÿä¸€ç§’
 	private Date date = null;
 	private List<TextView> listtext = null;
 	private boolean iscomit = false;
@@ -61,7 +61,7 @@ public class LocalTimer extends AsyncTask<Object, Object, Boolean> {
 //		}, 0, Delay);
 
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -110,7 +110,7 @@ public class LocalTimer extends AsyncTask<Object, Object, Boolean> {
 		if (listtext.size() == 2) {
 			listtext.get(1).setText(getRemoteTime());
 		}
-		
+
 //		String time = null;
 //		if (listtext.size() > 1) {
 //			time = getRemoteTime();
@@ -122,8 +122,8 @@ public class LocalTimer extends AsyncTask<Object, Object, Boolean> {
 //		} else {
 //			listtext.get(0).setText(getlocalTime());
 //		}
-		
-		
+
+
 		super.onProgressUpdate(result);
 	}
 
