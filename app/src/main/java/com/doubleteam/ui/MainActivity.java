@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
                 .activatedBackgroundResource(R.color.material_light_blue_100)
                 .badgeColorResource(R.color.myPrimaryColor));
         SECTIONS.add(SECOND_SECTION);
+
         PINNED_SECTION = new NavigationSectionDescriptor()
                 .addItem(new BaseNavigationItemDescriptor(5).text("恢复最初设置")
                         .iconResource(R.drawable.ic_settings_black_24dp))
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
     }
 
 
-    @SuppressLint("RtlHardcoded")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
