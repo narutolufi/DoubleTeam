@@ -46,10 +46,10 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 		addPreferencesFromResource(R.xml.setting);
 		preferences = getSharedPreferences("setting", Context.MODE_PRIVATE);
 
-		serverSetting = getResources().getString(R.string.server_setting);
-		overtimeSetting = getResources().getString(R.string.overtime_setting);
-		autoSync = getResources().getString(R.string.auto_sync);
-		themesSetting = getResources().getString(R.string.themes_setting);
+		serverSetting = getResources().getString(R.string.app_name);
+		overtimeSetting = getResources().getString(R.string.app_name);
+		autoSync = getResources().getString(R.string.app_name);
+		themesSetting = getResources().getString(R.string.app_name);
 
 		lpServer = (ListPreference) findPreference(serverSetting);
 		lpServer.setValue(preferences.getString("server", "pool.ntp.org"));
@@ -57,21 +57,21 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 		lpOvertime = (ListPreference) findPreference(overtimeSetting);
 		lpOvertime.setValue(String.valueOf(preferences.getLong("overtime", 30)));
 		lpOvertime.setOnPreferenceChangeListener(this);
-		lpTimedepart = (ListPreference) findPreference(getResources().getString(R.string.time_depart));
+		lpTimedepart = (ListPreference) findPreference(getResources().getString(R.string.app_name));
 		lpTimedepart.setOnPreferenceChangeListener(this);
 		lpTimedepart.setValue(preferences.getString("timedepart", "1"));
 		cbpAutoSync = (CheckBoxPreference) findPreference(autoSync);
 		cbpAutoSync.setChecked(preferences.getBoolean("auto_sync", false));
 		cbpAutoSync.setOnPreferenceChangeListener(this);
-		reset = findPreference(getResources().getString(R.string.reset));
+		reset = findPreference(getResources().getString(R.string.app_name));
 		reset.setOnPreferenceClickListener(this);
-		findPreference(getResources().getString(R.string.about)).setOnPreferenceClickListener(this);
+		findPreference(getResources().getString(R.string.app_name)).setOnPreferenceClickListener(this);
 		lpThemesSetting = (ListPreference) findPreference(themesSetting);
 		lpThemesSetting.setOnPreferenceChangeListener(this);
-		otherServer = getResources().getString(R.string.other_server);
+		otherServer = getResources().getString(R.string.app_name);
 		etpOtherServer = (EditTextPreference) findPreference(otherServer);
 		boolean isauto = preferences.getBoolean("auto_sync", false);
-		findPreference(getResources().getString(R.string.time_depart)).setEnabled(isauto);
+		findPreference(getResources().getString(R.string.app_name)).setEnabled(isauto);
 
 		String defaultTimeDepart = preferences.getString("timedepart", "120秒");
 		lpTimedepart.setValue(defaultTimeDepart);
@@ -92,8 +92,8 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
+//			Intent intent = new Intent(this, MainActivity.class);
+//			startActivity(intent);
 			overridePendingTransition(R.anim.activity_move_in_from_left, R.anim.activity_move_out_to_right);
 			finish();
 		}
@@ -122,7 +122,7 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 		} else if (preference.getKey().equals(autoSync)) {
 			Log.v("change", "auto");
 			cbpAutoSync.setDefaultValue(newValue);
-			findPreference(getResources().getString(R.string.time_depart)).setEnabled((Boolean) newValue);
+			findPreference(getResources().getString(R.string.app_name)).setEnabled((Boolean) newValue);
 			editor.putBoolean("auto_sync", (Boolean) newValue);
 			if ((Boolean) newValue) {
 				editor.putString("timedepart", lpTimedepart.getValue());
@@ -138,7 +138,7 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 		} else if (preference.getKey().equals(otherServer)) {
 			etpOtherServer.setSummary(newValue.toString());
 			editor.putString("other_server", newValue.toString());
-		} else if (preference.getKey().equals(getResources().getString(R.string.time_depart))) {
+		} else if (preference.getKey().equals(getResources().getString(R.string.app_name))) {
 			lpTimedepart.setValue(newValue.toString());
 			//	lpTimedepart.setValue(preferences.getString("timedepart", "1"));
 			editor.putString("timedepart", newValue.toString());
@@ -152,7 +152,7 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 		// TODO Auto-generated method stub
 		Editor editor = preferences.edit();
 
-		if (preference.getKey().equals(getResources().getString(R.string.reset))) {
+		if (preference.getKey().equals(getResources().getString(R.string.app_name))) {
 			lpServer.setValue("pool.ntp.org");
 			lpOvertime.setValue("30");
 			lpThemesSetting.setValue(color[0]);
@@ -162,9 +162,9 @@ public class SettingActivity extends PreferenceActivity implements OnPreferenceC
 			editor.putBoolean("auto_sync", false);
 			editor.putInt("theme", colorValue[0]);
 			editor.putBoolean("gps_mode", false);
-		} else if (preference.getKey().equals(getResources().getString(R.string.about))) {
+		} else if (preference.getKey().equals(getResources().getString(R.string.app_name))) {
 			new AlertDialog.Builder(SettingActivity.this).setTitle("关于")
-					.setMessage(getResources().getString(R.string.about_info)).setPositiveButton("确定", null).show();
+					.setMessage(getResources().getString(R.string.app_name)).setPositiveButton("确定", null).show();
 		} else {
 			return false;
 		}

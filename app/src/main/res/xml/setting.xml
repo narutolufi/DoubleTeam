@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory android:title="@string/ntp_setting" >
+    <PreferenceCategory android:title="@string/app_name" >
         <ListPreference
             android:entries="@array/server_value"
             android:entryValues="@array/server_value"
-            android:key="@string/server_setting"
-            android:title="@string/server_setting" />
+            android:key="@string/app_name"
+            android:title="@string/app_name" />
 
         <EditTextPreference
             android:enabled="false"
-            android:key="@string/other_server"
-            android:title="@string/other_server" />
+            android:key="@string/app_name"
+            android:title="@string/app_name" />
 
         <ListPreference
             android:entries="@array/overtime_value"
             android:entryValues="@array/overtime_value"
-            android:key="@string/overtime_setting"
-            android:title="@string/overtime_setting" />
+            android:key="@string/app_name"
+            android:title="@string/app_name" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/other" >
+    <PreferenceCategory android:title="@string/app_name" >
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="@string/auto_sync"
-            android:title="@string/auto_sync" />
+            android:key="@string/app_name"
+            android:title="@string/app_name" />
         <!-- 设置自动同步 -->
         <ListPreference
             android:entries="@array/time_depart"
             android:entryValues="@array/time_depart"
-            android:key="@string/time_depart"
-            android:title="@string/time_depart" >
+            android:key="@string/app_name"
+            android:title="@string/app_name" >
         </ListPreference>
         <ListPreference
             android:entries="@array/themes_value"
             android:entryValues="@array/themes_value"
-            android:key="@string/themes_setting"
-            android:title="@string/themes_setting" >
+            android:key="@string/app_name"
+            android:title="@string/app_name" >
         </ListPreference>
 
         <Preference
-            android:key="@string/reset"
-            android:title="@string/reset" />
+            android:key="@string/app_name"
+            android:title="@string/app_name" />
         <Preference
-            android:key="@string/about"
-            android:title="@string/about" />
+            android:key="@string/app_name"
+            android:title="@string/app_name" />
     </PreferenceCategory>
 
 </PreferenceScreen>

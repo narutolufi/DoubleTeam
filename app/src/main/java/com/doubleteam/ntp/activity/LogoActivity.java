@@ -29,9 +29,9 @@ public class LogoActivity extends Activity {
 				super.handleMessage(msg);
 				switch (msg.what) {
 					case 0x01:
-						Intent intent = new Intent(LogoActivity.this,
-								MainActivity.class);
-						startActivity(intent);
+//						Intent intent = new Intent(LogoActivity.this,
+//								MainActivity.class);
+//						startActivity(intent);
 						overridePendingTransition(
 								R.anim.activity_move_in_from_right,
 								R.anim.activity_move_out_to_left);

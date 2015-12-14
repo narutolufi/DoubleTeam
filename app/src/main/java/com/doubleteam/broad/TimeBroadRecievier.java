@@ -11,9 +11,7 @@ public class TimeBroadRecievier extends BroadcastReceiver {
 		// TODO Auto-generated method stub
 		Intent intent2 = new Intent();
 		intent2.setAction("com.doubleteam.sevice.TimeSevice");
-		//	Toast.makeText(context, "开机启动", Toast.LENGTH_SHORT).show();
 		context.startService(intent2);
-
 	}
 
 }
