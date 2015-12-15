@@ -6,9 +6,9 @@
     android:layout_width="match_parent">
 
   <TextView
-      android:background="?colorAccent"
+      android:background="@color/theme_light"
       android:textColor="?android:colorForegroundInverse"
-      android:text="NTP服务器设置"
+      android:text="@string/server_setting"
       android:layout_width="match_parent"
       android:layout_height="?actionBarSize"
       android:paddingLeft="@dimen/mnd_unit_double"

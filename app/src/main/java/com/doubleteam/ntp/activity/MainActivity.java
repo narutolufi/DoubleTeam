@@ -1,4 +1,4 @@
-package com.doubleteam.ui;
+package com.doubleteam.ntp.activity;
 
 import android.content.res.Configuration;
 import android.graphics.Typeface;
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
     private TextView time_txt;
     private TextView date_txt;
     private TextView native_datetime_txt;
+    private TextView mistime_txt;
 
     private static String serverSetting;
     private static int overtimeSetting;
@@ -64,17 +65,17 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
 
     static {
         initData();
-        PRIMARY_SECTION = new NavigationSectionDescriptor().heading("服务器设置")
-                .addItem(new SimpleNavigationItemDescriptor(1).text("自定义NTP服务器").badge(serverSetting).sticky()
+        PRIMARY_SECTION = new NavigationSectionDescriptor().heading(R.string.server_setting)
+                .addItem(new SimpleNavigationItemDescriptor(1).text(R.string.settings_server).badge(serverSetting).sticky()
                         .iconResource(R.drawable.ic_star_black_24dp)
-                        .activeColorResource(R.color.myPrimaryColor)
-                        .badgeColorResource(R.color.myPrimaryDarkColor)
-                        .activatedBackgroundResource(R.color.material_light_blue_100))
-                .addItem(new SimpleNavigationItemDescriptor(2).text("超时设置").badge(overtimeSetting+"").sticky()
+                        .activeColorResource(R.color.theme_light)
+                        .badgeColorResource(R.color.theme_light)
+                        .activatedBackgroundResource(R.color.theme_dark))
+                .addItem(new SimpleNavigationItemDescriptor(2).text(R.string.settings_overtime).badge(overtimeSetting+"").sticky()
                         .iconResource(R.drawable.ic_star_black_24dp)
-                        .activeColorResource(R.color.myPrimaryColor)
-                        .activatedBackgroundResource(R.color.material_light_blue_100)
-                        .badgeColorResource(R.color.myPrimaryColor));
+                        .activeColorResource(R.color.theme_light)
+                        .activatedBackgroundResource(R.color.theme_dark)
+                        .badgeColorResource(R.color.theme_light));
         SECTIONS.add(PRIMARY_SECTION);
 
         if(autoSync){
@@ -83,19 +84,19 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
             toggleNavigationItemDescriptor = new ToggleNavigationItemDescriptor(3).checked(false);
         }
 
-        SECOND_SECTION = new NavigationSectionDescriptor().heading("其他设置")
+        SECOND_SECTION = new NavigationSectionDescriptor().heading(R.string.other)
                 .addItem(toggleNavigationItemDescriptor)
-                .addItem(new SimpleNavigationItemDescriptor(4).text("设置同步时间").badge(timeDepartSetting).sticky()
+                .addItem(new SimpleNavigationItemDescriptor(4).text(R.string.settings_time_depart).badge(timeDepartSetting).sticky()
                 .iconResource(R.drawable.ic_star_black_24dp)
-                .activeColorResource(R.color.myPrimaryColor)
-                .activatedBackgroundResource(R.color.material_light_blue_100)
-                .badgeColorResource(R.color.myPrimaryColor));
+                .activeColorResource(R.color.theme_light)
+                .activatedBackgroundResource(R.color.theme_dark)
+                .badgeColorResource(R.color.theme_light));
         SECTIONS.add(SECOND_SECTION);
 
         PINNED_SECTION = new NavigationSectionDescriptor()
-                .addItem(new BaseNavigationItemDescriptor(5).text("恢复最初设置")
+                .addItem(new BaseNavigationItemDescriptor(5).text(R.string.settings_reset)
                         .iconResource(R.drawable.ic_settings_black_24dp))
-                .addItem(new BaseNavigationItemDescriptor(6).text("关于")
+                .addItem(new BaseNavigationItemDescriptor(6).text(R.string.about)
                         .iconResource(R.drawable.ic_help_black_24dp));
     }
 
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
             mNavFragment.setHeaderView(mNavFragment.getLayoutInflater2().inflate(R.layout.mnd_custom_header, null), true);
             mNavFragment.setSections(SECTIONS);
             mNavFragment.setPinnedSection(PINNED_SECTION);
-            mNavFragment.setBackgroundResource(R.color.myAccentColor);
+            mNavFragment.setBackgroundResource(R.color.theme_dark);
         }
         if (savedInstanceState == null) {
             mSelectedItem = 1;
@@ -210,10 +211,12 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
         time_txt = (TextView) findViewById(R.id.id_time_txt);
         date_txt = (TextView) findViewById(R.id.id_date_txt);
         native_datetime_txt = (TextView) findViewById(R.id.id_native_datetime_txt);
+        mistime_txt = (TextView) findViewById(R.id.id_mistime_txt);
         time_txt.setTypeface(mRobotoTime);
         title_txt.setTypeface(mRobotoTitle);
         date_txt.setTypeface(mRobotoTitle);
         native_datetime_txt.setTypeface(mRobotoTitle);
+        mistime_txt.setTypeface(mRobotoTitle);
     }
 
 
@@ -303,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
     private void selectSettingAbout(){
         new MaterialDialog.Builder(this)
                 .title(R.string.settings_about)
-                .content("本软件中国科学院国家授时中心版权所有!")
+                .content(R.string.about_info)
                 .positiveText(R.string.choose)
                 .negativeText(R.string.cancel)
                 .icon(getResources().getDrawable(R.drawable.ntp_logo))
