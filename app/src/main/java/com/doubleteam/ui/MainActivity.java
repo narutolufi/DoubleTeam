@@ -1,6 +1,5 @@
 package com.doubleteam.ui;
 
-import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -12,8 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.doubleteam.NtpApp;
 import com.doubleteam.ntp.R;
 import com.doubleteam.util.SpUtil;
+import com.doubleteam.widget.ClockView;
 import com.doubleteam.widget.ToggleNavigationItemDescriptor;
 
 import net.xpece.material.navigationdrawer.NavigationDrawerUtils;
@@ -32,13 +33,13 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
 
     private DrawerLayout mDrawerLayout;
 
-    private View mContent;
-
     private ActionBarDrawerToggle mDrawerToggle;
 
     private SupportNavigationListFragment mNavFragment;
 
     private int mSelectedItem;
+
+    private ClockView mTimePicker;
 
     private static String serverSetting;
     private static int overtimeSetting;
@@ -54,13 +55,14 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
     private static ToggleNavigationItemDescriptor toggleNavigationItemDescriptor;
 
     static {
+        initData();
         PRIMARY_SECTION = new NavigationSectionDescriptor().heading("服务器设置")
                 .addItem(new SimpleNavigationItemDescriptor(1).text("自定义NTP服务器").badge(serverSetting).sticky()
                         .iconResource(R.drawable.ic_star_black_24dp)
                         .activeColorResource(R.color.myPrimaryColor)
                         .badgeColorResource(R.color.myPrimaryDarkColor)
                         .activatedBackgroundResource(R.color.material_light_blue_100))
-                .addItem(new SimpleNavigationItemDescriptor(2).text("超时设置").badge(overtimeSetting).sticky()
+                .addItem(new SimpleNavigationItemDescriptor(2).text("超时设置").badge(overtimeSetting+"").sticky()
                         .iconResource(R.drawable.ic_star_black_24dp)
                         .activeColorResource(R.color.myPrimaryColor)
                         .activatedBackgroundResource(R.color.material_light_blue_100)
@@ -87,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
                         .iconResource(R.drawable.ic_settings_black_24dp))
                 .addItem(new BaseNavigationItemDescriptor(6).text("关于")
                         .iconResource(R.drawable.ic_help_black_24dp));
-
     }
 
 
@@ -96,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mContent = findViewById(R.id.content);
         initView();
         if (mDrawerLayout != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -183,12 +183,18 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
 
     }
 
+    private static void initData(){
+        serverSetting = NtpApp.spUtil.getSettingServer();
+        overtimeSetting = NtpApp.spUtil.getSettingsOvertime();
+        autoSync = NtpApp.spUtil.getSettingsAutoSync();
+        otherServer = NtpApp.spUtil.getSettingOtherServer();
+        timeDepartSetting = NtpApp.spUtil.getSettingsTimedepart();
+    }
+
+
     private void initView(){
-        serverSetting = SpUtil.getInstance(this).getSettingServer();
-        overtimeSetting = SpUtil.getInstance(this).getSettingsOvertime();
-        autoSync = SpUtil.getInstance(this).getSettingsAutoSync();
-        otherServer = SpUtil.getInstance(this).getSettingOtherServer();
-        timeDepartSetting = SpUtil.getInstance(this).getSettingsTimedepart();
+        mTimePicker = (ClockView) findViewById(R.id.clockView);
+
     }
 
 

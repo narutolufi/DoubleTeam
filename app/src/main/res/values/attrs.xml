@@ -3,4 +3,12 @@
     <declare-styleable name="ScrimInsetsView">
           <attr name="insetForeground" format="reference|color" />
       </declare-styleable>
+
+    <declare-styleable name="ClockStyleable">
+        <attr name="clock" format="reference"/>
+        <attr name="hour" format="reference"/>
+        <attr name="minute" format="reference"/>
+        <attr name="second" format="reference"/>
+        <attr name="center_clock" format="reference"/>
+    </declare-styleable>
 </resources>

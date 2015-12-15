@@ -1,4 +1,12 @@
 <resources>
     <style name="Theme.MndSample" parent="Theme.AppCompat.Light.DarkActionBar"/>
     <style name="Theme.Mnd.Dark" parent="Theme.AppCompat"/>
+
+    <style name="ClockStyle">
+        <item name="clock">@drawable/blank_clock</item>
+        <item name="minute">@drawable/minute_hand</item>
+        <item name="hour">@drawable/hour_hand</item>
+        <item name="second">@drawable/sec_hand</item>
+        <item name="center_clock">@drawable/hand_center</item>
+    </style>
 </resources>

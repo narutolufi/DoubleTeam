@@ -33,5 +33,4 @@ dependencies {
         transitive = true
     }
     compile files('libs/apache-commons-net.jar')
-    compile project(':googleDateTimePickers')
 }
