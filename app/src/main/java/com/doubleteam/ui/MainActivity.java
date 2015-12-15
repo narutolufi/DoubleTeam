@@ -1,6 +1,7 @@
 package com.doubleteam.ui;
 
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.doubleteam.NtpApp;
@@ -40,6 +42,12 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
     private int mSelectedItem;
 
     private ClockView mTimePicker;
+
+
+    private TextView title_txt;
+    private TextView time_txt;
+    private TextView date_txt;
+    private TextView native_datetime_txt;
 
     private static String serverSetting;
     private static int overtimeSetting;
@@ -193,8 +201,19 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
 
 
     private void initView(){
+        Typeface mRobotoTitle = Typeface.createFromAsset(this.getAssets(),
+                "fonts/Roboto-Medium.ttf");
+        Typeface mRobotoTime = Typeface.createFromAsset(this.getAssets(),
+                "fonts/Roboto-BoldCondensed.ttf");
         mTimePicker = (ClockView) findViewById(R.id.clockView);
-
+        title_txt = (TextView) findViewById(R.id.id_title_txt);
+        time_txt = (TextView) findViewById(R.id.id_time_txt);
+        date_txt = (TextView) findViewById(R.id.id_date_txt);
+        native_datetime_txt = (TextView) findViewById(R.id.id_native_datetime_txt);
+        time_txt.setTypeface(mRobotoTime);
+        title_txt.setTypeface(mRobotoTitle);
+        date_txt.setTypeface(mRobotoTitle);
+        native_datetime_txt.setTypeface(mRobotoTitle);
     }
 
 
@@ -277,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
                 .content(stringBuffer.toString())
                 .positiveText(R.string.choose)
                 .negativeText(R.string.cancel)
-                .icon(getResources().getDrawable(R.drawable.icon_app))
+                .icon(getResources().getDrawable(R.drawable.ntp_logo))
                 .show();
     }
 
@@ -287,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListFra
                 .content("本软件中国科学院国家授时中心版权所有!")
                 .positiveText(R.string.choose)
                 .negativeText(R.string.cancel)
-                .icon(getResources().getDrawable(R.drawable.icon_app))
+                .icon(getResources().getDrawable(R.drawable.ntp_logo))
                 .show();
     }
 
